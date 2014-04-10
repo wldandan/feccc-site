@@ -1,0 +1,375 @@
+{
+	"id": "feccc",
+	"name": "FECCC",
+	"description": "家择配企业信息系统",
+	"splash": "splash",
+	"loaderConfig": {
+		"paths": {
+			"app": "com/feccc"
+		}
+	},
+	"dependencies": [
+	],
+	"controllers": [
+	],
+	"template": "app/application/template/application.html",
+	"defaultView": "login",
+	"defaultTransition": "slide",
+	"views": {
+		"login": {
+			"type": "dojox/app/ViewBase",
+			"template": "app/views/desktop/login.html",
+			"dependencies": ["com/spss/ca/View",
+			"dijit/layout/ContentPane",
+			"dijit/form/Button",
+			"dijit/form/ValidationTextBox",
+			"com/spss/ca/widget/InlineMessage",
+			"dojox/app/utils/simpleModel",
+			"com/spss/ca/data/JsonRest",
+			"dojo/store/DataStore"]
+		},
+		"home": {
+			"type": "com/spss/ca/ViewBaseExtended",
+			"nls": "com/spss/ca/application/nls/Vhome",
+			"navigation": true,
+			"render": "com/spss/ca/desktop/render/HomeRenderer",
+			"template": "app/views/desktop/newHome.html",
+			"dependencies": ["com/spss/ca/View",
+			"dijit/layout/BorderContainer",
+			"dijit/layout/ContentPane",
+			"com/spss/ca/desktop/widget/IconButton",
+			"com/spss/ca/desktop/render/HomeRenderer"]
+		},
+		"projects": {
+			"defaultView": "list",
+			"navigation": true,
+			"nls": "com/spss/ca/application/nls/VallProjects",
+			"header": {
+				"visible": true,
+				"type": "label"
+			},
+			"views": {
+				"list": {
+					"type": "com/spss/ca/ViewBaseExtended",
+					"template": "app/views/desktop/viewAllProjects.html",
+					"controller": "com/spss/ca/desktop/controller/ViewAllProjectsController"
+				},
+				"project": {
+					"defaultView": "view",
+					"type": "com/spss/ca/ViewBaseExtended",
+					"controller": "com/spss/ca/desktop/controller/ProjectController",
+					"header": {
+						"visible": true,
+						"type": "dd"
+					},
+					"views": {
+						"view": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"template": "app/views/desktop/viewProject.html",
+							"header": {
+								"visible": true,
+								"type": "tab"
+							},
+							"controller": "com/spss/ca/desktop/controller/ViewProjectController",
+							"defaultTransition": "slide",
+							"dependencies": ["dijit/layout/BorderContainer",
+							"dijit/layout/ContentPane",
+							"dijit/form/Select",
+							"dojox/layout/ToggleSplitter",
+							"com/spss/ca/desktop/widget/MaxableItem",
+							"com/spss/ca/desktop/widget/MaxsizeableList",
+							"com/spss/ca/desktop/widget/projects/summary/SummaryContainer",
+							"com/spss/ca/desktop/widget/projects/explore/ExploreContainer",
+							"com/spss/ca/desktop/widget/projects/explore/ProjectContains",
+							"dijit/layout/TabContainer",
+							"com/spss/ca/desktop/widget/FilterBox",
+							"com/spss/ca/desktop/widget/projects/summary/TopInsightsList",
+							"com/spss/ca/desktop/widget/fieldPanel/FieldsPane",
+							"dojox/mvc"]
+						},
+						"projectProperties": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"nls": "com/spss/ca/application/nls/VprojectProperties",
+							"template": "app/views/desktop/projectProperties.html",
+							"controller": "com/spss/ca/desktop/controller/ProjectPropertiesController",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/layout/TabContainer",
+							"dijit/layout/BorderContainer",
+							"dojox/layout/ToggleSplitter",
+							"com/spss/ca/desktop/controller/ProjectPropertiesController",
+							"dijit/form/Form",
+							"dijit/form/TextBox",
+							"com/spss/ca/widget/InlineMessage",
+							"com/spss/ca/widget/ObjectedNameBox",
+							"com/spss/ca/desktop/widget/projects/properties/ProjectProperties",
+							"com/spss/ca/desktop/widget/projects/properties/EditMetadataAndTargets"]
+						},
+						"analysisProperites": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"nls": "com/spss/ca/application/nls/VanalysisProperties",
+							"controller": "com/spss/ca/desktop/controller/AnalysisController",
+							"template": "app/views/desktop/analysis.html",
+							"dependencies": []
+						},
+						"editFieldProperties": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"nls": "com/spss/ca/application/nls/VfieldProperties",
+							"controller": "com/spss/ca/desktop/controller/FieldPropertiesController",
+							"render": "com/spss/ca/desktop/render/FieldPropertiesRender",
+							"template": "app/views/desktop/fieldProperties.html",
+							"dependencies": []
+						}
+					}
+				},
+				"create": {
+					"defaultView": "newProject",
+					"header": {
+						"visible": true,
+						"type": "label"
+					},
+					"nls": "com/spss/ca/application/nls/VnewProject",
+					"views": {
+						"newProject": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"controller": "com/spss/ca/desktop/controller/CreateProjectController",
+							"render": "com/spss/ca/desktop/render/CreateProjectRender",
+							"template": "app/views/desktop/createProject.html",
+							"dependencies": ["dijit/form/Button",
+							"dijit/form/TextBox",
+							"dijit/form/Textarea",
+							"dijit/Dialog",
+							"dijit/ProgressBar",
+							"com/spss/ca/View",
+							"com/spss/ca/widget/ObjectedNameBox",
+							"com/spss/ca/desktop/controller/CreateProjectController",
+							"com/spss/ca/desktop/render/CreateProjectRender",
+							"com/spss/ca/desktop/widget/TagList",
+							"com/spss/ca/desktop/widget/Uploader",
+							"com/spss/ca/widget/projects/TreeLevelsEditor"]
+						},
+						"editFieldPros": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"nls": "com/spss/ca/application/nls/VfieldProperties",
+							"controller": "com/spss/ca/desktop/controller/FieldPropertiesController",
+							"render": "com/spss/ca/desktop/render/FieldPropertiesRender",
+							"template": "app/views/desktop/fieldProperties.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/layout/TabContainer",
+							"dijit/layout/BorderContainer",
+							"dojox/layout/ToggleSplitter",
+							"com/spss/ca/desktop/widget/dataSource/EditDataSourceProperties",
+							"com/spss/ca/desktop/controller/FieldPropertiesController",
+							"com/spss/ca/desktop/render/FieldPropertiesRender"]
+						}
+					}
+				}
+			}
+		},
+		"dataSources": {
+			"navigation": true,
+			"defaultView": "list",
+			"nls": "com/spss/ca/application/nls/VallDatasources",
+			"header": {
+				"visible": true,
+				"type": "label"
+			},
+			"views": {
+				"list": {
+					"type": "com/spss/ca/ViewBaseExtended",
+					"controller": "com/spss/ca/desktop/controller/ViewAllDataController",
+					"render":"com/spss/ca/desktop/render/ViewAllDataRender",
+					"template": "app/views/desktop/viewAllData.html",
+					"dependencies": ["com/spss/ca/View",
+					"com/spss/ca/desktop/controller/ViewAllDataController"]
+				},
+				"create": {
+					"defaultView": "basic",
+					"header": {
+						"visible": true,
+						"type": "label"
+					},
+					"nls": "com/spss/ca/application/nls/Vdatasource",
+					"views": {
+						"basic": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"template": "app/views/desktop/sourceInformation.html",
+							"controller": "com/spss/ca/desktop/controller/SourceInformationController",
+							"render": "com/spss/ca/desktop/render/SourceInformationRender",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/BorderContainer",
+							"dijit/layout/ContentPane",
+							"dijit/form/Button",
+							"dijit/form/TextBox",
+							"dijit/form/SimpleTextarea",
+							"dojox/form/Uploader",
+							"com/spss/ca/desktop/widget/Uploader",
+							"dojox/form/uploader/FileList",
+							"com/spss/ca/desktop/widget/dataSource/ProgressIndicator",
+							"com/spss/ca/desktop/controller/SourceInformationController",
+							"com/spss/ca/desktop/render/SourceInformationRender"]
+						},
+						"importRules": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"nls": "com/spss/ca/application/nls/Vdatasource",
+							"controller": "com/spss/ca/desktop/controller/ImportRulesController",
+							"render": "com/spss/ca/desktop/render/ImportRulesRender",
+							"template": "app/views/desktop/importRules.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/form/Button",
+							"dijit/form/TextBox",
+							"dijit/form/SimpleTextarea",
+							"dijit/form/RadioButton",
+							"com/spss/ca/desktop/controller/ImportRulesController",
+							"dijit/form/Form",
+							"idx/form/Select",
+							"com/spss/ca/desktop/render/ImportRulesRender"]
+						},
+						"identifyTime": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"controller": "com/spss/ca/desktop/controller/IdentifyTimeController",
+							"template": "app/views/desktop/identifyTime.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/form/Button",
+							"dijit/form/TextBox",
+							"dijit/form/RadioButton",
+							"com/spss/ca/desktop/controller/IdentifyTimeController",
+							"com/spss/ca/desktop/widget/dataSource/ProgressIndicator"]
+						},
+						"identifySeries": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"controller": "com/spss/ca/desktop/controller/IdentifySeriesController",
+							"template": "app/views/desktop/identifySeries.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/form/Button",
+							"dijit/form/TextBox",
+							"dijit/form/RadioButton",
+							"com/spss/ca/desktop/controller/IdentifySeriesController",
+							"com/spss/ca/desktop/widget/dataSource/ProgressIndicator"]
+						},
+						"editMetaData": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"nls": "com/spss/ca/application/nls/Vdatasource",
+							"controller": "com/spss/ca/desktop/controller/EditMetaDataController",
+							"template": "app/views/desktop/editMetaData.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/layout/BorderContainer",
+							"dijit/form/Button",
+							"com/spss/ca/desktop/widget/dataSource/ProgressIndicator",
+							"com/spss/ca/desktop/controller/EditMetaDataController",
+							"com/spss/ca/desktop/widget/dataSource/EditDataSourceProperties"]
+						},
+						"uploadConfirm": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"nls": "com/spss/ca/application/nls/Vdatasource",
+							"controller": "com/spss/ca/desktop/controller/UploadConfirmationController",
+							"template": "app/views/desktop/uploadConfirm.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"com/spss/ca/desktop/controller/UploadConfirmationController",
+							"dijit/Dialog",
+							"dijit/ProgressBar"]
+						},
+						"dataQuality": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"nls": "com/spss/ca/application/nls/VdataQualityReport",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"controller": "com/spss/ca/desktop/controller/DataQualityReportController",
+							"render": "com/spss/ca/desktop/render/DataQualityReportRender",
+							"template": "app/views/desktop/dataQualityReport.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/BorderContainer",
+							"dijit/layout/ContentPane",
+							"com/spss/ca/desktop/widget/IconButton"]
+						}
+					}
+				},
+				"dataSource": {
+					"defaultView": "dataSourcePros",
+					"nls": "com/spss/ca/application/nls/VdatasourceProperties",
+					"type": "com/spss/ca/ViewBaseExtended",
+					"controller": "com/spss/ca/desktop/controller/DataSourceController",
+					"header": {
+						"visible": true,
+						"type": "label"
+					},
+					"views": {
+						"dataSourcePros": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"controller": "com/spss/ca/desktop/controller/DatasourcePropertiesController",
+							"render": "com/spss/ca/desktop/render/DatasourcePropertiesRender",
+							"template": "app/views/desktop/datasourceProperties.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/form/Button",
+							"dijit/form/TextBox",
+							"dijit/form/SimpleTextarea",
+							"dijit/layout/ContentPane",
+							"dijit/layout/BorderContainer",
+							"com/spss/ca/desktop/controller/DatasourcePropertiesController",
+							"com/spss/ca/desktop/render/DatasourcePropertiesRender"]
+						},
+						"editFieldPros": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"nls": "com/spss/ca/application/nls/VfieldProperties",
+							"controller": "com/spss/ca/desktop/controller/FieldPropertiesController",
+							"render": "com/spss/ca/desktop/render/FieldPropertiesRender",
+							"template": "app/views/desktop/fieldProperties.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/ContentPane",
+							"dijit/layout/TabContainer",
+							"dijit/layout/BorderContainer",
+							"dojox/layout/ToggleSplitter",
+							"com/spss/ca/desktop/widget/dataSource/EditDataSourceProperties",
+							"com/spss/ca/desktop/controller/FieldPropertiesController",
+							"com/spss/ca/desktop/render/FieldPropertiesRender"]
+						},
+						"dataQuality": {
+							"type": "com/spss/ca/ViewBaseExtended",
+							"header": {
+								"visible": true,
+								"type": "label"
+							},
+							"nls": "com/spss/ca/application/nls/VdataQualityReport",
+							"controller": "com/spss/ca/desktop/controller/DataQualityReportController",
+							"render": "com/spss/ca/desktop/render/DataQualityReportRender",
+							"template": "app/views/desktop/dataQualityReport.html",
+							"dependencies": ["com/spss/ca/View",
+							"dijit/layout/BorderContainer",
+							"dijit/layout/ContentPane",
+							"com/spss/ca/desktop/widget/IconButton",
+							"com/spss/ca/desktop/render/HomeRenderer"]
+						}
+					}
+				}
+			}
+		}
+	}
+}
