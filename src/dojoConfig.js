@@ -5,16 +5,19 @@ dojoConfig = {
 		"dojo-firebug" : true,
 		"dojo-debug-messages" : true
 	},
-	baseUrl : "/",
+	baseUrl : "./",
 	packages : [ {
+		name : "com",
+		location: "src/com"
+	}, {
 		name : "dojo",
-		location: "lib/dojo"
+		location: "lib/dojo/dojo"
 	}, {
 		name : "dijit",
-		location : "lib/dijit"
+		location : "lib/dojo/dijit"
 	}, {
 		name : "dojox",
-		location : "lib/dojox"
+		location : "lib/dojo/dojox"
 	}],
 	traceSet : {
 		"loader-inject" : 0,
