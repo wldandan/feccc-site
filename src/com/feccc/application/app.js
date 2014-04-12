@@ -1,13 +1,11 @@
 define([ 
-    "dojo/_base/html", 
+    "dojo/_base/json", 
     "dojox/app/main", 
     "dojo/_base/connect", 
     "dojo/_base/Deferred", 
-    "dojo/text!./config/config.json",
-    
-    "dojo/_base/window"
+    "dojo/text!./config/config.json"
 ], function(
-	dojo, Application, connect, Deferred, configText
+	json, Application, connect, Deferred, configText
 ) {
 	this.declaredClass = "app";
 	app = Application(json.fromJson(configText));
